@@ -16,7 +16,7 @@ f.close()
 
 for i in range(n):
     print()
-    rand = random.randint(0,len(spm)-1)
+    rand = random.randint(0, len(spm) - 1)
     print(spm[rand])
     spm.pop(rand)
     print()
