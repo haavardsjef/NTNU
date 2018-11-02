@@ -2,6 +2,7 @@
 # 01.11.2018
 
 # Programmet velger et tilfeldig spørsmål fra wikioppgavene
+# Det samme spørsmålet blir ikke stilt mer enn en gang
 
 # Importer moduler
 import random
