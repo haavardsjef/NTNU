@@ -1,4 +1,4 @@
-class Location{
+class Location {
     static int x;
     static int y;
 

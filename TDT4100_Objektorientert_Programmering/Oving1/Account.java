@@ -1,12 +1,14 @@
-class Account{
-
+class Account {
     static double balance;
     static float interestRate;
     public static void deposit(double ammount){
-        if (ammount > 0){
+        if (ammount > 0) {
             balance = balance + ammount;
         }
     }
+
+
+
 
     public static void addInterest(){
         deposit(balance * interestRate);
@@ -21,12 +23,6 @@ class Account{
     public static void setInterestRate(float newRate){
         interestRate = newRate;
     }
-
-
-
-
-
-
 
     public static void main(String[] args) {
         deposit(15);

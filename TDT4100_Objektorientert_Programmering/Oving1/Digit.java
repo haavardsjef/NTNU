@@ -1,5 +1,4 @@
-class Digit{
-
+class Digit {
     int power;
     int digit;
 
@@ -15,7 +14,7 @@ class Digit{
 
     public boolean increment(){
         digit++;
-        if (digit == power){
+        if (digit == power) {
             digit = 0;
             return true;
         }

@@ -1,4 +1,5 @@
-class UpOrDownCounter{
+class UpOrDownCounter {
+
     int start;
     int end;
     int counter;
@@ -15,23 +16,20 @@ class UpOrDownCounter{
     }
 
     public boolean count(){
-        if (start < end && counter != end){
+        if (start < end && counter != end) {
             counter++;
         }
-        if (start > end && counter != end){
+        if (start > end && counter != end) {
             counter--;
         }
 
-        if (counter == end){
+        if (counter == end) {
             return false;
         }
         else{
             return true;
         }
     }
-
-
-
     public static void main(String[] args) {
         UpOrDownCounter counter1 = new UpOrDownCounter(0,2);
         System.out.println(counter1.count());
