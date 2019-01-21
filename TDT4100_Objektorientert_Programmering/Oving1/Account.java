@@ -1,35 +1,54 @@
-class Account {
-    static double balance;
-    static float interestRate;
-    public static void deposit(double ammount){
-        if (ammount > 0) {
-            balance = balance + ammount;
-        }
+package stateandbehavior;
+
+public class Account {
+    double balance;
+    double interestRate;
+        
+    public Account() {
+	
     }
-
-
-
-
-    public static void addInterest(){
-        deposit(balance * interestRate);
-    }
-
-    public static double getBalance(){
+    
+    public double getBalance() {
         return balance;
     }
-    public static float getInterestRate(){
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getInterestRate() {
         return interestRate;
     }
-    public static void setInterestRate(float newRate){
-        interestRate = newRate;
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+    
+    public void deposit(double amount) {
+	if (amount>0) {
+	    setBalance(this.balance + amount);
+	}
+	
+    }
+    
+    public void addInterest() {
+    	deposit(this.balance * this.interestRate*0.01);
+    }
+    
+    public String toString() {
+	return "Kontobalanse: " + this.getBalance() + "\n" + "Rentefot: " + this.getInterestRate();
     }
 
     public static void main(String[] args) {
-        deposit(15);
-        deposit(-3);
-        interestRate = 0.04f;
-        System.out.println(getBalance());
-        addInterest();
-        System.out.println(getBalance());
+	Account ac1 = new Account();
+	System.out.println(ac1.toString());
+	ac1.deposit(1000);
+	System.out.println(ac1.toString());
+	ac1.setInterestRate(10);
+	System.out.println(ac1.toString());
+	ac1.addInterest();
+	System.out.println(ac1.toString());
+	
+	
     }
 }
