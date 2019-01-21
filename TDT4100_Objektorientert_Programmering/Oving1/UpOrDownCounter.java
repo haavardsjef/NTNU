@@ -1,45 +1,45 @@
-class UpOrDownCounter {
+package stateandbehavior;
 
-    int start;
-    int end;
+public class UpOrDownCounter {
     int counter;
-
-    //Constructor
-    public UpOrDownCounter(int start, int end){
-        this.start = start;
-        this.end = end;
-        this.counter = start;
+    int end;
+    
+    public UpOrDownCounter(int start, int end) {
+	if (start == end) {
+	    throw new IllegalArgumentException("De to tallene kan ikke være like!");
+	}
+	this.counter = start;
+	this.end = end;
     }
-
-    public int getCounter(){
-        return counter;
+    
+    int getCounter() {
+	return this.counter;
     }
-
-    public boolean count(){
-        if (start < end && counter != end) {
-            counter++;
-        }
-        if (start > end && counter != end) {
-            counter--;
-        }
-
-        if (counter == end) {
-            return false;
-        }
-        else{
-            return true;
-        }
+    
+    boolean count() {
+	if (this.counter < this.end) {
+	    this.counter += 1;
+	    return !(this.counter==this.end);
+	}
+	else if (this.counter > this.end) {
+	    this.counter += -1;
+	    return !(this.counter==this.end);
+	}
+	return false;
     }
+    
+    
     public static void main(String[] args) {
-        UpOrDownCounter counter1 = new UpOrDownCounter(0,2);
-        System.out.println(counter1.count());
-        System.out.println(counter1.getCounter());
-        System.out.println(counter1.count());
-        System.out.println(counter1.getCounter());
-        System.out.println(counter1.count());
-        System.out.println(counter1.getCounter());
-        System.out.println(counter1.count());
-        System.out.println(counter1.getCounter());
-
+	UpOrDownCounter c1 = new UpOrDownCounter(0, 4);
+	System.out.println(c1.getCounter());
+	System.out.println(c1.count());
+	System.out.println(c1.getCounter());
+	System.out.println(c1.count());
+	System.out.println(c1.getCounter());
+	System.out.println(c1.count());
+	System.out.println(c1.getCounter());
+	System.out.println(c1.count());
+	System.out.println(c1.getCounter());
+	
     }
 }
