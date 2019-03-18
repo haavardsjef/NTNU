@@ -106,7 +106,7 @@ public class SubjectEditDialogController {
             errorMessage += "No valid subject Name!\n"; 
         }
         if (subjectPointsField.getText() == null || subjectPointsField.getText().length() == 0 || subjectPointsField.getText().substring(subjectPointsField.getText().indexOf('.')).length() != 2 ){
-            errorMessage += "Vennligst oppgi ett desimaltall med nÃ¸yaktig en desimal!\n"; 
+            errorMessage += "Vennligst oppgi ett desimaltall med nøyaktig en desimal!\n"; 
         }
 
         if (subjectGradeField.getText() == null || subjectGradeField.getText().length() == 0) {

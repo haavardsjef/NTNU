@@ -51,7 +51,7 @@ public class AppController {
      * The constructor is called before the initialize() method.
      */
     
-    // KonstruktÃ¸r
+    // Konstruktør
     public AppController() {
     }
 
