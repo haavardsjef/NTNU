@@ -29,8 +29,8 @@ public class App extends Application{
         subjectData.add(new Subject("TMA4100", "Matematikk 1", 7.5f, 'A'));
         subjectData.add(new Subject("TDT4140", "Diskret Matematikk", 7.5f, 'A'));
         subjectData.add(new Subject("EXPH0006", "Examen philosophicum for teknologi og realfag", 7.5f, 'C'));
-        subjectData.add(new Subject("MA1201", "LineÃ¦r algebra og geometri", 3.7f, 'B'));
-        subjectData.add(new Subject("MA1202", "LineÃ¦r algebra med anvendelser", 3.8f, 'A'));
+        subjectData.add(new Subject("MA1201", "Lineær algebra og geometri", 3.7f, 'B'));
+        subjectData.add(new Subject("MA1202", "Lineær algebra med anvendelser", 3.8f, 'A'));
     }
   
     // Standard getter
