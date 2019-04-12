@@ -1,0 +1,135 @@
+int blue = 2;
+int red = 3;
+int green = 4;
+int white = 5;
+
+
+int blue_b = 8;
+int red_b = 9;
+int green_b = 10;
+int white_b = 11;
+
+int order[100];
+int done = 0;
+int finish = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(blue_b, INPUT_PULLUP);
+  pinMode(red_b, INPUT_PULLUP);
+  pinMode(green_b, INPUT_PULLUP);
+  pinMode(white_b, INPUT_PULLUP);
+  
+  pinMode(blue, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(white, OUTPUT);
+
+  pinMode(12, OUTPUT);
+  tone(12, 400, 100);
+  Serial.begin(9600);
+
+  for (int i=0 ; i < 100 ; i++){
+    int rando = random(2,6);
+    order[i] = rando;
+  }
+  
+  
+}
+
+
+void loop() {
+   
+  // PUTS ALL PINS TO LOW
+  for (int i = 2; i < 6; i++){
+    digitalWrite(i, LOW);
+  }
+  for (int i = 0; i < 100-3; i++){
+    if(done == 0){
+      Serial.print("Runde: ");
+      Serial.println(i);
+      disp(i+3);
+      delay(2000);
+      check(i+3);
+      delay(3000);
+    }
+    else{
+      tone(12, 250);
+      Serial.print("Du kom til runde: ");
+      Serial.println(finish);
+    }
+   }
+  }
+
+
+void disp(int i){
+  for (int j = 0; j < i; j++){
+    digitalWrite(order[j], HIGH);
+    Serial.println(order[j]);
+    tone(12, 450);
+    delay(800);
+    noTone(12);
+    digitalWrite(order[j], LOW);
+    delay(800);
+  }
+}
+
+void check(int i){
+  for (int j = 0; j < i; j++){
+      delay(800);
+      if (order[j] != blue && digitalRead(blue_b)==LOW){
+        Serial.println("FEIL 1");
+        done = 1;
+        tone(12, 250);
+      }
+      else if (order[j] != red && digitalRead(red_b)==LOW){
+        Serial.println("FEIL 2");
+        done = 1;
+        tone(12, 250);
+      }
+      else if (order[j] != green && digitalRead(green_b)==LOW){
+        Serial.println("FEIL 3");
+        done = 1;
+        tone(12, 250);
+      }
+      else if (order[j] != white && digitalRead(white_b)==LOW){
+        Serial.println("FEIL 4");
+        done = 1;
+        tone(12, 250);
+      }
+      
+      
+      
+      else if (order[j] == blue && digitalRead(blue_b)==HIGH){
+        Serial.println("FEIL 5");
+        done = 1;
+        tone(12, 250);
+      }
+      else if (order[j] == red && digitalRead(red_b)==HIGH){
+        Serial.println("FEIL 6");
+        done = 1;
+        tone(12, 250);
+      }
+      else if (order[j] == green && digitalRead(green_b)==HIGH){
+        Serial.println("FEIL 7");
+        done = 1;
+        tone(12, 250);
+      }
+      else if (order[j] == white && digitalRead(white_b)==HIGH){
+        Serial.println("FEIL 8");
+        done = 1;
+        tone(12, 250);
+      }
+      else{
+        Serial.println("RIKTIG");
+        digitalWrite(order[j], HIGH);
+        tone(12, 450);
+        finish = i;
+        
+      }
+      delay(800);
+      digitalWrite(order[j], LOW);
+      noTone(12);
+
+  }
+}
