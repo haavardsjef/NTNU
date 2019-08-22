@@ -1,0 +1,6 @@
+In short, the main job of your Arduino code is to continuously sample the button state, register
+when it changes (from HIGH to LOW or LOW to HIGH), and then, when such a change is detected, 
+use the time between the current change and the last change to determine the duration of
+the intervening press or pause. That duration will then permit identification of one of the 5 signal
+classes; and whenever the signal is anything other than a short pause, that signal should be sent
+to the Python program running on your laptop. 1
