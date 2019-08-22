@@ -7,23 +7,42 @@
 </head>
 
 <body>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <desc>Red rectangle shape</desc>
-        <rect id="id1" x="5" y="5" width="50%" height="50%" fill="#c00" onclick="this.style.fill='yellow';"></rect>
-    </svg>
 
 
     <svg width="500" height="500">
-
         <!-- Clock. -->
-        <circle cx="100" cy="100" r="90" stroke="black" stroke-width="10" fill="white" />
-        <line x1="100" y1="100" x2="100" y2="20" style="stroke:rgb(0,0,0);stroke-width:7" />
-        <line x1="100" y1="100" x2="180" y2="100" style="stroke:rgb(0,0,0);stroke-width:5" />
+        <!--
+        <circle class="clock" cx="100" cy="100" r="90" stroke="black" stroke-width="10" fill="white" />
+        <line class="clock" id="hour" x1="100" y1="100" x2="100" y2="20" style="stroke:rgb(0,0,0);stroke-width:7" />
+        <line class="clock" id="minute" x1="100" y1="100" x2="180" y2="100" style="stroke:rgb(0,0,0);stroke-width:5" />
+        -->
 
-
+        <rect class="tile" width="100" height="100" style="fill:rgb(0,255,255);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" x="100" width="100" height="100" style="fill:rgb(0,120,120);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" y="100" width="100" height="100" style="fill:rgb(120,0,120);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" x="100" y="100" width="100" height="100" style="fill:rgb(120,70,12);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" x="200" y="100" width="100" height="100" style="fill:rgb(14,70,12);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" x="200" width="100" height="100" style="fill:rgb(70,70,12);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" y="200" width="100" height="100" style="fill:rgb(70,250,12);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" x="100" y="200" width="100" height="100" style="fill:rgb(70,70,80);stroke-width:5;stroke:rgb(0,0,0)"></rect>
+        <rect class="tile" x="200" y="200" width="100" height="100" style="fill:rgb(144,70,80);stroke-width:5;stroke:rgb(0,0,0)"></rect>
 
     </svg>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".tile").mouseenter(function() {
+                $(this).fadeOut("slow");
+                $(".clock").animate({
+                    opacity: '0.2',
+                });
+            });
+
+
+        });
+    </script>
 </body>
 
 </html>
