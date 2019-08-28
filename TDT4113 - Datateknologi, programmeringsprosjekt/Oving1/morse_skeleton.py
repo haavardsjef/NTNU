@@ -19,27 +19,25 @@ _reset = 4
 # Morse Code Class
 class mocoder():
 
+    # Note: the codes for dot and dash coming to Python via the serial port are 1 and 2, respectively, since those were most
+    # convenient at the Arduino level. However, I've switched to 0 and 1 in this dictionary, since it is a lot easier to
+    # read.  So O = dot, 1 = dash in the _morse_codes dictionary below.  You will need to remember that when looking
+    # up letters and digits in this dictionary.
 
-# Note: the codes for dot and dash coming to Python via the serial port are 1 and 2, respectively, since those were most
-# convenient at the Arduino level. However, I've switched to 0 and 1 in this dictionary, since it is a lot easier to
-# read.  So O = dot, 1 = dash in the _morse_codes dictionary below.  You will need to remember that when looking
-# up letters and digits in this dictionary.
+    _morse_codes = {'01': 'a', '1000': 'b', '1010': 'c', '100': 'd', '0': 'e', '0010': 'f', '110': 'g', '0000': 'h', '00': 'i', '0111': 'j',
+                    '101': 'k', '0100': 'l', '11': 'm', '10': 'n', '111': 'o', '0110': 'p', '1101': 'q', '010': 'r', '000': 's', '1': 't',
+                    '001': 'u', '0001': 'v', '011': 'w', '1001': 'x', '1011': 'y', '1100': 'z', '01111': '1', '00111': '2', '00011': '3',
+                    '00001': '4', '00000': '5', '10000': '6', '11000': '7', '11100': '8', '11110': '9', '11111': '0'}
 
-    _morse_codes = {'01':'a','1000':'b','1010':'c','100':'d','0':'e','0010':'f','110':'g','0000':'h','00':'i','0111':'j',
-               '101':'k','0100':'l','11':'m','10':'n','111':'o','0110':'p','1101':'q','010':'r','000':'s','1':'t',
-               '001':'u','0001':'v','011':'w','1001':'x','1011':'y','1100':'z','01111':'1','00111':'2','00011':'3',
-               '00001':'4','00000':'5','10000':'6','11000':'7','11100':'8','11110':'9','11111':'0'}
-
-	# This is where you set up the connection to the serial port.
-    def __init__(self,sport=True):
+    # This is where you set up the connection to the serial port.
+    def __init__(self, sport=True):
         if sport:
             self.serial_port = arduino_connect.pc_connect()
         self.reset()
-        self.morse = {'01':'a','1000':'b','1010':'c','100':'d','0':'e','0010':'f','110':'g','0000':'h','00':'i','0111':'j',
-                   '101':'k','0100':'l','11':'m','10':'n','111':'o','0110':'p','1101':'q','010':'r','000':'s','1':'t',
-                   '001':'u','0001':'v','011':'w','1001':'x','1011':'y','1100':'z','01111':'1','00111':'2','00011':'3',
-                   '00001':'4','00000':'5','10000':'6','11000':'7','11100':'8','11110':'9','11111':'0'}
-
+        self.morse = {'01': 'a', '1000': 'b', '1010': 'c', '100': 'd', '0': 'e', '0010': 'f', '110': 'g', '0000': 'h', '00': 'i', '0111': 'j',
+                      '101': 'k', '0100': 'l', '11': 'm', '10': 'n', '111': 'o', '0110': 'p', '1101': 'q', '010': 'r', '000': 's', '1': 't',
+                      '001': 'u', '0001': 'v', '011': 'w', '1001': 'x', '1011': 'y', '1100': 'z', '01111': '1', '00111': '2', '00011': '3',
+                      '00001': '4', '00000': '5', '10000': '6', '11000': '7', '11100': '8', '11110': '9', '11111': '0'}
 
     def reset(self):
         self.current_message = ''
@@ -47,7 +45,7 @@ class mocoder():
         self.current_symbol = ''
 
     # This should receive an integer in range 1-4 from the Arduino via a serial port
-    def read_one_signal(self,port=None):
+    def read_one_signal(self, port=None):
         connection = port if port else self.serial_port
         while True:
             # Reads the input from the arduino serial connection
@@ -63,12 +61,11 @@ class mocoder():
     def decoding_loop(self):
         while True:
             s = self.read_one_signal(self.serial_port)
-            #print(s)
             for byte in s:
                 self.process_signal(int(chr(byte)))
 
      # Dummy method
-    def process_signal(self,sig):
+    def process_signal(self, sig):
         if sig == 0 or sig == 1:
             self.update_current_symbol(sig)
         if sig == 2:
@@ -79,9 +76,12 @@ class mocoder():
 
     def update_current_symbol(self, sig):
         self.current_symbol += str(sig)
+
     def handle_symbol_end(self):
-        self.current_word += str(self.morse.get(self.current_symbol))
+        if str(self.morse.get(self.current_symbol)) != 'None':
+            self.current_word += str(self.morse.get(self.current_symbol))
         self.current_symbol = ''
+
     def handle_word_end(self):
         self.handle_symbol_end()
         if self.current_word != 'None':
@@ -89,6 +89,7 @@ class mocoder():
             self.current_message += self.current_word
         print(self.current_message)
         self.current_word = ''
+
 
 ''' To test if this is working, do the following in a Python command window:
 
