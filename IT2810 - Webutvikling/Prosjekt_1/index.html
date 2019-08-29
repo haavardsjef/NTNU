@@ -4,57 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Abstrakt Interaktiv Kunst</title>
-    <style type="text/css">
-        canvas {
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <svg width="500" height="500">
-        <!-- Clock. -->
-        <circle class="clock" cx="150" cy="150" r="115" stroke="black" stroke-width="10" fill="white" />
-        <line class="clock" id="hour" x1="150" y1="150" x2="150" y2="50" style="stroke:rgb(0,0,0);stroke-width:7" />
-        <line class="clock" id="minute" x1="150" y1="150" x2="200" y2="100" style="stroke:rgb(0,0,0);stroke-width:5" />
-
-        <text x="100" y="200" font="sans-serif" fill="blue">Sic Parvis Magna</text>
+    <h1>MITT KUNSTVERK</h1>
+    <h2>IT2810</h2>
+    <h3>Kunstner: human_291031</h3>
+    <div class="container">
+        <svg width="500" height="500"></svg>
 
 
-
-        <rect class="tile" id="00" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="01" x="100" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="02" x="200" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="10" x="0" y="100" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="11" x="100" y="100" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="12" x="200" y="100" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="20" x="0" y="200" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="21" x="100" y="200" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-        <rect class="tile" id="22" x="200" y="200" width="100" height="100" style="stroke-width:5;stroke:rgb(0,0,0)"></rect>
-    </svg>
+        <div id="canvas-border">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
 
 
+    <div class="buttonPane">
+        <button id="button">Vis Dokumentasjon</button>
+    </div>
+    <div class="container">
+        <div id="documentation">
+            <h3>CSS flexbox</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
 
-    <canvas></canvas>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".tile").mouseenter(function() {
-                $(this).fadeOut("slow");
-
-            });
-            $(".clock").click(function() {
-                $(this).attr('fill', '#ccc');
-
-
-            });
-
-
-
-        });
-    </script>
     <script src="canvas.js"></script>
 </body>
 
