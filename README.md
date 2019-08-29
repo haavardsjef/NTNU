@@ -1,2 +1,2 @@
 # NTNU
-Diverse skole greier, NTNU
+Diverse skolegreier, NTNU
