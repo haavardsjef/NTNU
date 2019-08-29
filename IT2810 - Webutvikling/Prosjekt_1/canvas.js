@@ -72,11 +72,11 @@ function addCanvasTile(x, y, color) {
 
 $(document).ready(function() {
     $(".tile").mouseenter(function() {
-        $(this).fadeOut("slow").delay(3000).fadeIn("slow");
+        $(this).fadeOut("slow").delay(30000).fadeIn("slow");
 
     });
     $(".circle").click(function() {
-        $(this).fadeOut("slow").delay(10000).fadeIn("slow");
+        $(this).fadeOut().delay(10000).fadeIn();
 
     });
 
