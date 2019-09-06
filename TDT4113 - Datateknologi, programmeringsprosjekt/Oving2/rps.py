@@ -9,10 +9,10 @@ class Spiller:
         self.score = 0
         self.act = None
         self.navn = None
+        self.MestVanlig = None
 
     def velg_aksjon(self):
         """Velger mellom rock/paper/scissor og returnerer dette"""
-        self.act = input("r/p/s: ")
         return self.act
 
     def motta_resultat(self):
@@ -22,6 +22,52 @@ class Spiller:
     def oppgi_navn(self, navn):
         """Oppgir navnet til klassen"""
         self.navn = navn
+
+class Historiker(Spiller):
+    """Docstring"""
+    pass
+
+class Sekvensiell(Spiller):
+    """Går sekvensielt gjennom de forskjellig aksjonene, rock, saks, papir"""
+
+    def __init__(self):
+        Spiller.__init__(self)
+        self.previous = None
+
+
+    def velg_aksjon(self):
+        if self.previous is None or self.previous == 'p':
+            self.previous = 'r'
+            return 'r'
+        elif self.previous == 'r':
+            self.previous = 's'
+            return 's'
+        self.previous = 'p'
+        return 'p'
+
+
+class Tilfeldig(Spiller):
+    """En spiller som velger tilfeldig mellom stein, saks og papir"""
+
+    def __init__(self):
+        Spiller.__init__(self)
+
+
+    @staticmethod
+    def velg_aksjon():
+        temp = random.randint(0, 2)
+        if temp == 0:
+            return 'r'
+        elif temp == 1:
+            return 'p'
+        return 's'
+
+class MestVanlig(Spiller):
+    """Velger basert på hvilket av motstanderens valg som er mest vanlig"""
+
+    def __init__(self):
+        Spiller.__init__(self)
+        self.MestVanlig = [0, 0, 0]
 
 class EnkeltSpill:
     """Et enkelt spill"""
@@ -42,6 +88,10 @@ class EnkeltSpill:
             return act1, act2, 1
         self.spiller2.score += 1
         return act1, act2, 2
+
+    def __str__(self):
+        return "Spiller 1 valgte: " + self.spiller1.act + ". Spiller 2 valgte: " \
+        + self.spiller2.act + ". Vinneren var "
 
 class Aksjon:
     """Comperator for actions"""
