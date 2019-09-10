@@ -83,7 +83,6 @@ class MestVanlig(Spiller):
                 count_1 += 1
             else:
                 count_2 += 1
-
         if (count_0 >= count_1) and (count_0 >= count_2):
             return 1
         if (count_1 >= count_0) and (count_1 >= count_2):
