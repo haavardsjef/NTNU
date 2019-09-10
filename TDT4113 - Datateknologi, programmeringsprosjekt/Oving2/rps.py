@@ -116,9 +116,9 @@ class Historiker(Spiller):
         self.find_sequence()
         temp = []
         # Starter fra 1 fordi hvis sekvensen starter på index 0 så er det ingen valg før uansett..
-        for i in range(1, len(self.motstanders_valg)):
+        for i in range(0, len(self.motstanders_valg)-self.husk):
             if self.motstanders_valg[i:i+self.husk] == self.sequence:
-                temp.append(self.motstanders_valg[i-1])
+                temp.append(self.motstanders_valg[i+self.husk])
 
         if not temp: #Sjekker om listen er tom
             return random.randint(0, 2)
