@@ -123,7 +123,6 @@ class Affine(Cypher):
         """Generate random keys"""
         key = False
         while not key:
-            print("Finding key")
             temp = random.randint(1, self.alphabet_size)
             if crypto_utils.modular_inverse(temp, self.alphabet_size):
                 key = True
@@ -157,6 +156,11 @@ class Unbreakable(Cypher):
         for letter in key:
             decode_key += self.alphabet[(self.alphabet_size - self.alphabet.index(letter)) % self.alphabet_size]
         return self.encode(encoded_text, decode_key)
+
+    def generate_keys(self):
+        keys = ["PIZZA", "TACOS", "HAMBURGER"]
+        return keys[random.randint(0, len(keys)-1)]
+
 
 class RSA(Cypher):
     """En implementasjon av Cypher som bruker RSA koding"""
@@ -196,13 +200,13 @@ class RSA(Cypher):
         return (n, e)
 
 
-CIPHER = Affine()
-TEXT = input("Encode: ")
-KEY = CIPHER.generate_keys()
-print(KEY)
-X = CIPHER.encode(TEXT, KEY)
-print(X)
-Y = CIPHER.decode(X, KEY)
-print(Y)
-print(CIPHER.verify(TEXT, KEY))
-input()
+# CIPHER = Affine()
+# TEXT = input("Encode: ")
+# KEY = CIPHER.generate_keys()
+# print(KEY)
+# X = CIPHER.encode(TEXT, KEY)
+# print(X)
+# Y = CIPHER.decode(X, KEY)
+# print(Y)
+# print(CIPHER.verify(TEXT, KEY))
+# input()
