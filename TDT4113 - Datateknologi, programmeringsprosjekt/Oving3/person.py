@@ -1,4 +1,5 @@
 import Cypher
+import crypto_utils
 
 class Person:
     """Superclass"""
@@ -40,8 +41,10 @@ class Sender(Person):
     def operate_cipher(self):
         text = input("Text to encrypt: ")
         cipher = self.get_cipher()
-        self.set_key(cipher.generate_keys())
+        if not isinstance(cipher, Cypher.RSA):
+            self.set_key(cipher.generate_keys())
         self.encoded_text = cipher.encode(text, self.get_key())
+
 
 
 class Reciever(Person):
@@ -57,8 +60,60 @@ class Reciever(Person):
         print("Dekryptert melding: ", cipher.decode(self.get_encoded_text(), self.get_key()))
 
 
-class Hacker:
+class Hacker(Person):
     """Subklasse av Person?"""
+
+    def __init__(self):
+        Person.__init__(self)
+        self.words = []
+        self.import_words()
+
+    def hack(self, encoded_text, cipher):
+        if isinstance(cipher, Cypher.Caesar) or isinstance(cipher, Cypher.Multiplicative):
+            key = 0
+            index = -1
+            while index == -1:
+                decoded_text = cipher.decode(encoded_text, key)
+                index = self.validate_word(decoded_text)
+                key += 1
+            print("Most probable word: ", self.words[index])
+        if isinstance(cipher, Cypher.Affine):
+            key_1 = 0
+            key_2 = 0
+            index = -1
+
+            while index == -1:
+                while index == -1 and key_1 < 100:
+                    if crypto_utils.modular_inverse(key_1, cipher.alphabet_size):
+                        decoded_text = cipher.decode(encoded_text, (key_1, key_2))
+                        index = self.validate_word(decoded_text)
+                    key_1 += 1
+                    print("i: ", key_1, " j: ", key_2)
+                key_1 = 0
+                key_2 += 1
+            print("Most probable word: ", self.words[index])
+        if isinstance(cipher, Cypher.Unbreakable):
+            key = 0
+            index = -1
+            while index == -1:
+                decoded_text = cipher.decode(encoded_text, self.words[key])
+                index = self.validate_word(decoded_text)
+                key += 1
+            print("Most probable word: ", self.words[index])
+        return
+
+
+    def import_words(self):
+        f = open("english_words.txt", "r")
+        while f.readline():
+            self.words.append(f.readline()[:-1])
+        f.close()
+
+    def validate_word(self, word):
+        if word.lower() in self.words:
+            return self.words.index(word.lower())
+        return -1
+
 
 
 
@@ -71,28 +126,44 @@ def pick_cipher():
     if type_cipher == 0:
         cipher_1 = Cypher.Caesar()
         cipher_2 = Cypher.Caesar()
+        cipher_3 = Cypher.Caesar()
     elif type_cipher == 1:
         cipher_1 = Cypher.Multiplicative()
         cipher_2 = Cypher.Multiplicative()
+        cipher_3 = Cypher.Multiplicative()
     elif type_cipher == 2:
         cipher_1 = Cypher.Affine()
         cipher_2 = Cypher.Affine()
+        cipher_3 = Cypher.Affine()
     elif type_cipher == 3:
         cipher_1 = Cypher.Unbreakable()
         cipher_2 = Cypher.Unbreakable()
+        cipher_3 = Cypher.Unbreakable()
     elif type_cipher == 4:
         cipher_1 = Cypher.RSA()
         cipher_2 = Cypher.RSA()
-    return cipher_1, cipher_2
+        cipher_3 = Cypher.RSA()
+    return cipher_1, cipher_2, cipher_3
 
 
 SENDER = Sender()
 RECIEVER = Reciever()
-CIPHER1, CIPHER2 = pick_cipher()
+CIPHER1, CIPHER2, CIPHER3 = pick_cipher()
 SENDER.set_cipher(CIPHER1)
 RECIEVER.set_cipher(CIPHER2)
-SENDER.operate_cipher()
-RECIEVER.set_encoded_text(SENDER.get_encoded_text())
-RECIEVER.set_key(SENDER.get_key())
-RECIEVER.operate_cipher()
+if not isinstance(SENDER.cipher, Cypher.RSA):
+    print("not RSA")
+    SENDER.operate_cipher()
+    RECIEVER.set_encoded_text(SENDER.get_encoded_text())
+    RECIEVER.set_key(SENDER.get_key())
+    RECIEVER.operate_cipher()
+else:
+    SENDER.set_key(RECIEVER.cipher.generate_keys())
+    SENDER.operate_cipher()
+    RECIEVER.set_encoded_text(SENDER.get_encoded_text())
+    RECIEVER.set_key(RECIEVER.cipher.secret_key)
+    RECIEVER.operate_cipher()
+
+HACKER = Hacker()
+HACKER.hack(SENDER.encoded_text, CIPHER3)
 input()

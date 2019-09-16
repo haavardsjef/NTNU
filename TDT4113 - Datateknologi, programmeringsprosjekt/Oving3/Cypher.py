@@ -8,8 +8,8 @@ class Cypher:
     """Superklasse"""
 
     def __init__(self):
-        self.alphabet = self.generate_alphabet(65, 90)
-        #self.alphabet = self.generate_alphabet(32, 126)
+        #self.alphabet = self.generate_alphabet(65, 90)
+        self.alphabet = self.generate_alphabet(32, 126)
         self.alphabet_size = len(self.alphabet)
 
     @staticmethod
@@ -158,7 +158,7 @@ class Unbreakable(Cypher):
         return self.encode(encoded_text, decode_key)
 
     def generate_keys(self):
-        keys = ["PIZZA", "TACOS", "HAMBURGER"]
+        keys = ["pizza", "taco", "hamburger"]
         return keys[random.randint(0, len(keys)-1)]
 
 
@@ -197,6 +197,8 @@ class RSA(Cypher):
             e = random.randint(3, phi-1)
             d = crypto_utils.modular_inverse(e, phi)
         self.secret_key = (n, d)
+        print("Secret key: ", self.secret_key)
+        print("Public key: ", (n, e))
         return (n, e)
 
 
