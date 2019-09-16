@@ -16,7 +16,7 @@ class Cypher:
     def generate_alphabet(start, end):
         """Generates an array of all elements from ascii code start, to ascii code end"""
         temp = []
-        for i in range(start, end+1):
+        for i in range(start, end + 1):
             temp.append(chr(i))
         return temp
 
@@ -96,7 +96,6 @@ class Affine(Cypher):
         n1, n2 = key
         return self.decode_multiplicative(self.decode_caesar(encoded_text, n2), n1)
 
-
     def encode_multiplicative(self, text, key):
         """A straight copy from the method encode in class Multiplicative"""
         encoded_text = ""
@@ -129,8 +128,6 @@ class Affine(Cypher):
         return temp, random.randint(1, self.alphabet_size)
 
 
-
-
 class Unbreakable(Cypher):
     """En implementasjon av Cypher som bruker Unbreakable koding"""
 
@@ -141,7 +138,7 @@ class Unbreakable(Cypher):
         """Encodes using a secret key string"""
         # Figures out which natural number til multiply key
         # with so that we can guarantee that len(key) > len(text)
-        extend_factor = (len(text) // len(key)) + 1 # Utv
+        extend_factor = (len(text) // len(key)) + 1  # Utv
         extended_key = key * extend_factor
         encoded_text = ""
         i = 0
@@ -154,12 +151,16 @@ class Unbreakable(Cypher):
     def decode(self, encoded_text, key):
         decode_key = ""
         for letter in key:
-            decode_key += self.alphabet[(self.alphabet_size - self.alphabet.index(letter)) % self.alphabet_size]
+            decode_key += self.alphabet[(self.alphabet_size -
+                                         self.alphabet.index(letter)) % self.alphabet_size]
         return self.encode(encoded_text, decode_key)
 
     def generate_keys(self):
-        keys = ["pizza", "taco", "hamburger"]
-        return keys[random.randint(0, len(keys)-1)]
+        i = random.randint(0, 109582)
+        file = open("english_words.txt", "r")
+        key = file.readline(i)
+        file.close()
+        return key[:-1]
 
 
 class RSA(Cypher):
@@ -194,11 +195,9 @@ class RSA(Cypher):
         phi = (prime_p - 1) * (prime_q - 1)
         d = False
         while not d:
-            e = random.randint(3, phi-1)
+            e = random.randint(3, phi - 1)
             d = crypto_utils.modular_inverse(e, phi)
         self.secret_key = (n, d)
-        print("Secret key: ", self.secret_key)
-        print("Public key: ", (n, e))
         return (n, e)
 
 

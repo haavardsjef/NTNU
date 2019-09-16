@@ -76,7 +76,8 @@ class Hacker(Person):
                 decoded_text = cipher.decode(encoded_text, key)
                 index = self.validate_word(decoded_text)
                 key += 1
-            print("Most probable word: ", self.words[index])
+            print(key-1)
+            print("Hackers most probable word: ", self.words[index])
         if isinstance(cipher, Cypher.Affine):
             key_1 = 0
             key_2 = 0
@@ -91,7 +92,7 @@ class Hacker(Person):
                     print("i: ", key_1, " j: ", key_2)
                 key_1 = 0
                 key_2 += 1
-            print("Most probable word: ", self.words[index])
+            print("Hackers most probable word: ", self.words[index])
         if isinstance(cipher, Cypher.Unbreakable):
             key = 0
             index = -1
@@ -99,15 +100,14 @@ class Hacker(Person):
                 decoded_text = cipher.decode(encoded_text, self.words[key])
                 index = self.validate_word(decoded_text)
                 key += 1
-            print("Most probable word: ", self.words[index])
+            print("Hackers most probable word: ", self.words[index])
         return
 
 
     def import_words(self):
-        f = open("english_words.txt", "r")
-        while f.readline():
-            self.words.append(f.readline()[:-1])
-        f.close()
+        file = open("english_words.txt", "r")
+        self.words = file.read().splitlines()
+        file.close()
 
     def validate_word(self, word):
         if word.lower() in self.words:
@@ -152,7 +152,6 @@ CIPHER1, CIPHER2, CIPHER3 = pick_cipher()
 SENDER.set_cipher(CIPHER1)
 RECIEVER.set_cipher(CIPHER2)
 if not isinstance(SENDER.cipher, Cypher.RSA):
-    print("not RSA")
     SENDER.operate_cipher()
     RECIEVER.set_encoded_text(SENDER.get_encoded_text())
     RECIEVER.set_key(SENDER.get_key())
