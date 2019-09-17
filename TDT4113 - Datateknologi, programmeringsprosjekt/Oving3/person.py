@@ -89,7 +89,7 @@ class Hacker(Person):
                         decoded_text = cipher.decode(encoded_text, (key_1, key_2))
                         index = self.validate_word(decoded_text)
                     key_1 += 1
-                    print("i: ", key_1, " j: ", key_2)
+                    print("i: ", key_1, " j:  ", key_2)
                 key_1 = 0
                 key_2 += 1
             print("Hackers most probable word: ", self.words[index])
