@@ -54,3 +54,38 @@ class Stack(Container):
     def peek(self):
         assert not self.is_empty()
         return self._items[-1]
+
+
+def test_stack():
+    """Test the stack class"""
+    stack = Stack()
+    stack.push(1)
+    stack.push("str")
+    if not stack.size() == 2:
+        return False
+    if not stack.pop() == "str":
+        return False
+    if not stack.peek() == 1:
+        return False
+    if not stack.pop() == 1:
+        return False
+    if not stack.is_empty():
+        return False
+    return True
+
+def test_queue():
+    """Test the Queue class"""
+    queue = Queue()
+    queue.push(1)
+    queue.push("str")
+    if not queue.size() == 2:
+        return False
+    if not queue.pop() == 1:
+        return False
+    if not queue.peek() == "str":
+        return False
+    if not queue.pop() == "str":
+        return False
+    if not queue.is_empty():
+        return False
+    return True

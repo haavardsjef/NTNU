@@ -1,6 +1,7 @@
 """Calculator by Håvard Hjelmeseth for TDT4113"""
-import numpy
 import numbers
+import re
+import numpy
 from Function import Function, Operator
 from Container import Queue, Stack
 
@@ -13,7 +14,7 @@ class Calculator:
         # functions. These can be made elsewhere in the program ,
         # or imported ( e . g . , from numpy)
         self.functions = {"EXP": Function(numpy.exp),
-                          "LOG": Function(numpy.log),
+                          "LOG": Function(numpy.log10),
                           "SIN": Function(numpy.sin),
                           "COS": Function(numpy.cos),
                           "SQRT": Function(numpy.sqrt)}
@@ -21,7 +22,7 @@ class Calculator:
         # Link them to Python functions ( here : from numpy)
         self.operators = {"PLUSS": Operator(numpy.add, 0),
                           "GANGE": Operator(numpy.multiply, 1),
-                          "DELE": Operator(numpy.divide, 1),
+                          #"DELE": Operator(numpy.true_divide, 1),
                           "MINUS": Operator(numpy.subtract, 0)}
         # Define the output−queue . The parse_text method fills this with RPN.
         # The evaluate output  queue method evaluates it.
@@ -68,10 +69,38 @@ class Calculator:
             output_queue.push(operator_stack.pop())
         self.output_queue = output_queue
 
-
     def string_parser(self, string):
         """Handles string parsing"""
-        
+        txt = string
+        txt = txt.replace(" ", "").upper()
+        parsed = Queue()
+        while len(txt) != 0:
+            if txt[0] == "(" or txt[0] == ")":
+                parsed.push(txt[0])
+                txt = txt[1:]
+            check = re.search("^[-0123456789.]+", txt)
+            if check is not None:
+                parsed.push(float(txt[:check.end(0)]))
+                txt = txt[check.end(0):]
+            targets = "|".join(["^" + func for func in self.functions.keys()])
+            check = re.search(targets, txt)
+            if check is not None:
+                parsed.push(self.functions.get(txt[:check.end(0)]))
+                txt = txt[check.end(0):]
+            targets = "|".join(["^" + operation for operation in self.operators.keys()])
+            check = re.search(targets, txt)
+            if check != None:
+                parsed.push(self.operators.get(txt[:check.end(0)]))
+                txt = txt[check.end(0):]
+        return parsed
+
+    def calculate_expression(self, txt):
+        """Calculates the expression txt"""
+        parsed = self.string_parser(txt)
+        self.shunting_yard(parsed)
+        print(self.handle_RPN())
+
+
 
 
 def test_calculator():
@@ -80,7 +109,8 @@ def test_calculator():
     print(calc.functions["EXP"].execute(calc.operators["PLUSS"].execute(
         1, calc.operators["GANGE"].execute(2, 3))))
 
-def test_RPN():
+
+def test_rpn():
     """Tests that handling RPN works"""
     calc = Calculator()
     calc.output_queue.push(1)
@@ -90,6 +120,7 @@ def test_RPN():
     calc.output_queue.push(calc.operators["PLUSS"])
     calc.output_queue.push(calc.functions["EXP"])
     print(calc.handle_RPN())
+
 
 def test_shunting_yard():
     """Test the shunting_yard algorithm"""
@@ -107,6 +138,29 @@ def test_shunting_yard():
     print(calc.handle_RPN())
 
 
+def test_string_parser():
+    """Returns true if string parser works like expected, false otherwise"""
+    calc = Calculator()
+    parsed = calc.string_parser("-1234.10 PLUSS 10.1 EXP")
+    if parsed != 4:
+        return False
+    if not isinstance(parsed.pop(), numbers.Number):
+        return False
+    if not isinstance(parsed.pop(), Operator):
+        return False
+    if not isinstance(parsed.pop(), numbers.Number):
+        return False
+    if not isinstance(parsed.pop(), Function):
+        return False
+    return True
 
-test_shunting_yard()
+
+def use_calc():
+    """Class to use the calculator"""
+    inp = input()
+    calc = Calculator()
+    calc.calculate_expression(inp)
+
+
+use_calc()
 input()

@@ -9,7 +9,7 @@ class Function:
     def __init__(self, func):
         self.func = func
 
-    def execute(self, element, debug=True):
+    def execute(self, element, debug=False):
         """Executes function"""
         # Check type
         if not isinstance(element, numbers.Number):
@@ -29,7 +29,7 @@ class Operator:
         self.operation = operation
         self.strength = strength
 
-    def execute(self, element1, element2, debug=True):
+    def execute(self, element1, element2, debug=False):
         """Executes operation"""
         # Check type
         if not isinstance(element1, numbers.Number):
