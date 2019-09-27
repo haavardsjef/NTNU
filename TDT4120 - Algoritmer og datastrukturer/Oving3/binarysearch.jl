@@ -59,13 +59,3 @@ function binaryhighest(x, v)
     end
     return low
 end
-
-
-
-x = [1.0, 2.0,3.0,4.0]
-y = [1 2; 2 6; 4 1; 5 2]
-z = [1.0 -1.0; 2.0 2.0; 3.0 3.0; 4.0 5.0; 5.0 5.0]
-delta = 1.0
-print(binaryintervalsearch(z, delta, 1))
-#print(binarylowest(x, 2.4))
-#print(binaryhighest(x, 2.6))
