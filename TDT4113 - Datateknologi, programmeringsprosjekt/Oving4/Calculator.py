@@ -142,7 +142,7 @@ def test_string_parser():
     """Returns true if string parser works like expected, false otherwise"""
     calc = Calculator()
     parsed = calc.string_parser("-1234.10 PLUSS 10.1 EXP")
-    if parsed != 4:
+    if parsed.size() != 4:
         return False
     if not isinstance(parsed.pop(), numbers.Number):
         return False
