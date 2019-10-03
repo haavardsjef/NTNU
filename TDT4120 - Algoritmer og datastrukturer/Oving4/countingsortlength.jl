@@ -2,7 +2,7 @@
 function countingsortlength(A)
     A = reverse(A)
     output = Array{String}(undef, length(A))
-    count = zeros(Int64, 10)
+    count = zeros(Int64, 1000)
 
     for i = 1: length(A)
         pos = length(A[i])+1
