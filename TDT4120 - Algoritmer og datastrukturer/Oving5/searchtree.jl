@@ -10,7 +10,7 @@ end
 function searchtree(root, dna)
     currentnode = root
 
-    for i = 0: length(dna)
+    for i = 1: length(dna)
         if haskey(currentnode.children, dna[i])
             currentnode = currentnode.children[dna[i]]
         else
