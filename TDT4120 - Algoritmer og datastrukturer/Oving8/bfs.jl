@@ -15,13 +15,13 @@ function bfs!(nodes, start)
     goalnode = nothing
     Q = Queue{Node}()
     enqueue!(Q, start)
-    while front(Q) != nothing
+    while !isempty(Q)
         u = dequeue!(Q)
         for v in u.neighbors
             if v.color == "white"
                 v.color = "gray"
                 v.distance = u.distance + 1
-                v.predeecessor = u
+                v.predecessor = u
                 enqueue!(Q, v)
                 if isgoalnode(v)
                     goalnode = v
@@ -33,10 +33,26 @@ function bfs!(nodes, start)
     return goalnode
 end
 
-x1 = Node(1,1)
-x2 = Node(2,1)
-x3 = Node(3,1)
 
-nodearray = [x1, x2, x3]
+# maze = [0 0 0 0 0
+#         0 1 1 1 0
+#         0 1 0 0 0
+#         0 1 1 1 0
+#         0 0 0 0 0]
 
-bfs!(nodearray, x2)
+nodelist = [Node(2, 2), Node(3, 2), Node(4, 2), Node(2, 3),
+            Node(4, 3), Node(2, 4), Node(4, 4)]
+
+nodelist[1].neighbors = [nodelist[2], nodelist[4]]
+nodelist[2].neighbors = [nodelist[1], nodelist[3]]
+nodelist[3].neighbors = [nodelist[2], nodelist[5]]
+nodelist[4].neighbors = [nodelist[1], nodelist[6]]
+nodelist[5].neighbors = [nodelist[3], nodelist[7]]
+nodelist[6].neighbors = [nodelist[4]]
+nodelist[7].neighbors = [nodelist[5]]
+
+
+setgoalnode(nodelist[7])
+result = bfs!(nodelist, nodelist[1])
+
+println(result!=nothing)
