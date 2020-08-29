@@ -1,0 +1,17 @@
+h1,
+h2 {
+  font-family: Arial;
+}
+
+body {
+  background-color: lightgray;
+}
+
+p {
+  font-family: Helvetica, sans-serif;
+}
+
+img {
+  max-width: 150px;
+  border: 1px solid white;
+}

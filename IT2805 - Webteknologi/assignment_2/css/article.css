@@ -1,0 +1,59 @@
+article {
+  width: 960px;
+  margin: auto;
+  max-width: 75ch; /* This line is changed */
+  font-size: 20px; /* This line is changed */
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+p,
+blockquote,
+ul,
+ol {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+#facts {
+  margin: 1em 0em 1em 1em;
+  width: 50%;
+  border: 1px dashed;
+  float: right;
+}
+
+#facts > ul {
+  list-style-image: url("./../img/cup-icon.svg"); /* This line is changed */
+  line-height: 1.5em;
+  padding-left: 1.5em;
+}
+
+/* These lines have been added when doing the assignement */
+body {
+  font-family: Verdana, sans-serif;
+  line-height: 1.5;
+  background-color: lightgray;
+  font-color: #323232;
+}
+
+#cover {
+  width: 960px;
+}
+
+#title {
+  margin-bottom: 0;
+}
+
+#byline {
+  margin-top: 0;
+}
+
+header {
+  border-bottom: 2px solid black;
+}
