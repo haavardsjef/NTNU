@@ -34,18 +34,34 @@ Again the robot did not perform an irrational action as the passing car must hav
 
 ### Can a simple reflex agent be rational for this environment? Explain your answer
 
+A simple reflex agent in the vacuum cleaner world described in Chapter 2.2.1 can not be rational if the agent is penalized 1 point for each movement. As the agent has no state, it would oscilate between the two squares after they are both clean, wasting points.
+
 ### Can a reflex agent with state be rational in this environment? Explain your answer.
+
+If the agent has a state it can remember that is has already cleaned both of the squares, and does not have to oscilate back and forth between clean squares. Such an agent would be rational.
 
 ### Assume now that the simple reflex agent (i.e., no internal state) can perceive the clean/dirty status of both locations at the same time. Can this agent be rational? Explain your answer. In case it can be rational, design the agent function.
 
+If the simple reflex agent can perceive the clean/dirty state of both locations at the same time, it would not need to keep state to be rational. The agent could clean both squares, and keep checking the status of both squares, without having to move. This agent would be rational.
+
 ## Consider the vacuum cleaner environment shown in Figure 2.3 in the textbook. Describe the environment using properties from Chapter 2.3.2, e.g. episodic/sequential, deterministic/stochastic etc. Explain selected values for properties in regards to the vacuum cleaner environment.
+
+The described vacuum cleaner environment is partially observable, as the vacuum cleaner can only observe the cleanliness of the square it is on. The environment would also be a single-agent environment, as only the one cleaning agent is present. When it comes to the question of deterministic vs stochastic it is not as clear. The squares might become dirty again after the agent has cleaned them, therefore the environment cannot be fully deterministic. The described environment is also sequential, as the cleaning agent will try to avoid cleaning squares that are already clean.
 
 ## Discuss the advantages and limitations of these four basic kinds of agents:
 
 ### Simple reflex agents
 
+Simple reflex agents have the advantage that they are simple and relatively cheap to produce. They act only based on the current percept, and are therefore limited in the kind of descision making they can perform.
+
 ### Model-based reflex agents
+
+A model based reflex agent maintains an internal state, keeping track of the part of the world that it cannot sense. This is useful for making descisions not only based on current percept, but also previous percept. Some drawbacks compared to simple reflex agents are complexity in terms of production and implementation, and also the matter of price.
 
 ### Goal-based agents
 
+Goal based agents also take into account the goal that it is trying to get to. Doing this, it can consider possible actions and choose the one leading to the goal. These descisions differ greatly in terms of complexity. The goal based agent can be less efficient than simpler agents, but are more flexible as the knowledge that supports its descision is represented explicitly and can be modified.
+
 ### Utility-based agents
+
+Utility based agents are similar to goal based agents, but also takes the "utility" of the choices into account. For example a goal based GPS agent might find a route to the desired destination, but an utility based GPS agent will try to find the shortest or cheapest path, or any path that maximizes its performance rating. Utility based agents are far greater in complexity in terms of producing and implementing.
