@@ -1,17 +1,22 @@
 h1,
 h2 {
-  font-family: Arial;
+  /* Headers must have a web-safe font that is different from the default */
+  font-family: Arial, sans-serif;
 }
 
 body {
+  /* Change the background color of the page */
   background-color: lightgray;
 }
 
 p {
+  /* Choose a font for your paragraphs, also have a fallback font */
   font-family: Helvetica, sans-serif;
 }
 
 img {
+  /* The image must have a maximum width of 150px */
   max-width: 150px;
+  /* The image must have a border */
   border: 1px solid white;
 }

@@ -1,8 +1,10 @@
 article {
   width: 960px;
   margin: auto;
-  max-width: 75ch; /* This line is changed */
-  font-size: 20px; /* This line is changed */
+  /* The width of the article body should only accomadate 65-75 characters */
+  max-width: 70ch;
+  /* The font size of the article body must be between 18-22px */
+  font-size: 20px;
 }
 
 h1 {
@@ -29,31 +31,40 @@ ol {
 }
 
 #facts > ul {
-  list-style-image: url("./../img/cup-icon.svg"); /* This line is changed */
+  /* Fix relative import path */
+  list-style-image: url("./../img/cup-icon.svg");
   line-height: 1.5em;
   padding-left: 1.5em;
 }
 
-/* These lines have been added when doing the assignement */
 body {
+  /* The font has to be changed to a font intended for readability */
   font-family: Verdana, sans-serif;
+  /* The line height must be 1.5 */
   line-height: 1.5;
+  /* The background color of the entire page must be light gray */
   background-color: lightgray;
-  font-color: #323232;
+  /* The font color must be #323232 */
+  color: #323232;
 }
 
 #cover {
-  width: 960px;
+  /* The cover image must have the same width as the article body */
+  /* Width:100% works because the cover img is a direct child of the article body */
+  width: 100%;
 }
 
 #title {
+  /* The margin between the title and the byline should be removed */
   margin-bottom: 0;
 }
 
 #byline {
+  /* The margin between the title and the byline should be removed */
   margin-top: 0;
 }
 
 header {
+  /* There should be a horizontal line separating the byline and the article body */
   border-bottom: 2px solid black;
 }
