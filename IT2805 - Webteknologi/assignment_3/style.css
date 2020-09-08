@@ -9,6 +9,7 @@ body {
 .wrapper {
   /* Height of page minus height of footer */
   min-height: calc(100vh - 30px);
+  width: 100%;
   position: absolute;
   /* Height of footer */
   padding-bottom: 30px;
