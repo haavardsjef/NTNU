@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IT2805</title>
+
+    <style type="text/css">
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      /* Part 1 */
+
+      .header {
+        font-family: sans-serif;
+        padding-top: 30px;
+        margin-bottom: 40px;
+        /* Center title */
+        text-align: center;
+      }
+
+      .box {
+        border-width: 2px;
+        border-color: #0060a3;
+        border-style: solid;
+        height: 400px;
+        /* Set width to 50% */
+        width: 50%;
+        /* Center the box horizontally */
+        position: absolute;
+        /* This moves the box to the center */
+        left: 50%;
+        /* This translates the origin to the center horizontally */
+        transform: translate(-50%);
+      }
+
+      .one {
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
+        border-color: #faa21b;
+        border-style: solid;
+        /* Add margin to one */
+        margin-left: 6px;
+        margin-top: 6px;
+      }
+
+      .two {
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
+        border-color: #faa21b;
+        border-style: solid;
+        background-color: #fff;
+        /* Position absolute at bottom left of box */
+        position: absolute;
+        bottom: 6px;
+        left: 6px;
+      }
+
+      .three {
+        position: relative;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
+        border-color: #faa21b;
+        border-style: solid;
+        background-color: #fff;
+        /* Position on the right side */
+        position: relative;
+        /* Move the three to the right side of box */
+        left: 100%;
+        /* Transforms origin to center horizontally */
+        transform: translate(-50%);
+      }
+
+      .five {
+        bottom: 10px;
+        right: 10px;
+        font-size: 35px;
+        font-family: sans-serif;
+        /* Position absolute at the bottom right */
+        position: absolute;
+        right: 6px;
+        bottom: 6px;
+      }
+
+      .four {
+        width: 50px;
+        height: 50px;
+        border-width: 2px;
+        border-color: #faa21b;
+        border-style: solid;
+        /* Position absolute in center of three */
+        position: absolute;
+        /* Move to center of three */
+        left: 50%;
+        top: 50%;
+        /* Transform origin to center horizontally and vertically */
+        transform: translate(-50%, -50%);
+      }
+
+      /* Part 2 */
+      a:link {
+        /* Unvisited link is blue */
+        color: blue;
+      }
+      a:visited {
+        /* When visited the color turns purple */
+        color: purple;
+      }
+      a:hover {
+        /* When hovered the color turns darkblue */
+        color: darkblue;
+      }
+      a:active {
+        /* When selected, the color turns cyan, and bg turns lightgray  */
+        color: cyan;
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Assignment 3: position</h1>
+    </div>
+
+    <div class="box">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three">
+        <div class="four"></div>
+      </div>
+      <div class="five">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+          CSS is awesome
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

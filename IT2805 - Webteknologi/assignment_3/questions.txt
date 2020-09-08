@@ -1,0 +1,9 @@
+1. What is the difference between position: absolute and position: fixed?
+Position absolute positions relative to the first parent container if it has a position attribute (other than static).
+If it has no such parent, it positions relative to the viewport.
+The position fixed positions relative to the viewport/browser window.
+
+2. With CSS3, how do we access the third element within another element?
+Using the :nth-child(3) pseudo selector. So for example if we want to style the 3rd child
+of a div with class "container", we would do:
+.container:nth-child(3){styling here}

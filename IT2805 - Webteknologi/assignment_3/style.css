@@ -1,0 +1,35 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Part 3 */
+.wrapper {
+  /* Height of page minus height of footer */
+  min-height: calc(100vh - 30px);
+  position: absolute;
+  /* Height of footer */
+  padding-bottom: 30px;
+}
+
+footer {
+  /* Position at bottom of wrapper */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background-color: gray;
+  color: white;
+}
+
+/* Part 4 */
+ul {
+  list-style: square;
+}
+
+ul > ul > li:last-child {
+  /* Change font color for last child of sublist */
+  color: red;
+}
