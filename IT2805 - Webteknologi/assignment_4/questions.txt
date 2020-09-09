@@ -1,0 +1,8 @@
+1.
+Thats to prevent random webpages to drain the users cellular data.
+
+2. 
+It will hide the element with the logo id
+
+3.
+One advantage might be if the user copies a url from desktop to mobile or vice versa.

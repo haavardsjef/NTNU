@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <title>HTML5 Video and CSS</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="screen">
+      <!-- Video should autoplay, audio should be muted, and it should loop upon completion -->
+      <!-- Poster is a fallback image incase video doesnt load -->
+      <!-- Video to only be shown on mobile -->
+      <video
+        id="video-alternative"
+        autoplay
+        muted
+        loop
+        poster="img/hovedbygget.png"
+      >
+        <!-- Ensure that visitors with browsers that do not support one particular format is
+           served another instead.  -->
+        <source src="videos/hovedbygget.mp4" type="video/mp4" />
+        <source src="videos/hovedbygget.ogv" type="video/ogv" />
+        <source src="videos/hovedbygget.webm" type="video/webm" />
+      </video>
+      <!-- Image to only be shown on mobile -->
+      <img src="img/hovedbygget.png" id="image-alternative" />
+
+      <div id="title">
+        <img src="img/ntnu.png" alt="NTNU" />
+      </div>
+    </div>
+
+    <article class="content">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </article>
+  </body>
+</html>
