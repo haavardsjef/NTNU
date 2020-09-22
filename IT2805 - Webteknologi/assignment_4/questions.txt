@@ -1,8 +1,13 @@
 1.
-Thats to prevent random webpages to drain the users cellular data.
+Mobile phone usually ignore autoplay to prevent webpages from draining the mobiles cellular data and battery.
 
 2. 
-It will hide the element with the logo id
+The css snippet at the end of the assignment will hide the element with the logo id if its between 768px and 1024px in width.
+Since the given resolutions are smaller than this range, the logo will not be hidden in this instance.
 
 3.
-One advantage might be if the user copies a url from desktop to mobile or vice versa.
+There are different advantages to having a single responsive website over dedicated mobile websites:
+- All the functionality will stay the same across all sizes.
+- Responsive sites can support a lot of different devices and screen sizes
+- Makes updating the site easier, as you only have to update and maintain a single page.
+- Search enginges might not always recognize that you want to access the mobile site, this is not a problem with responsive sites.
