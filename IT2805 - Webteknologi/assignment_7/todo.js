@@ -7,14 +7,15 @@ ul = document.getElementById("todo-list");
 
 // Task list
 const tasks = [
-  { id: 0, name: "Todo1", completed: false, timestamp: Date() },
-  { id: 1, name: "Todo2", completed: false, timestamp: Date() },
+  { id: 0, name: "Clean the dishes", completed: false, timestamp: Date() },
+  { id: 1, name: "Walk the dog", completed: false, timestamp: Date() },
 ];
 
 // IDCOUNTER
-let idCounter = 2;
+let idCounter = 2; // Starts at 2 since we have 0,1 as example todos
 
 function addTask(event) {
+  // Add task to tasklist
   event.preventDefault(); // Prevent page from reloading
   if (input.value != "") {
     tasks.unshift({
@@ -40,7 +41,17 @@ function drawList() {
     const checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", task.id);
-    checkbox.addEventListener("click", taskChecked(tasks.indexOf(task)));
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        // If checkbox is checked
+        tasks[tasks.indexOf(task)].completed = true;
+        drawList();
+      } else {
+        // If checkbox is not checked
+        tasks[tasks.indexOf(task)].completed = false;
+        drawList();
+      }
+    });
 
     // Create label for checkbox
     const label = document.createElement("label");
@@ -60,12 +71,9 @@ function drawList() {
     li.appendChild(label);
     ul.appendChild(li);
   });
-}
-
-function taskChecked(event) {
-  const index = event.target.id;
-  tasks[index].completed = !tasks[index].completed;
-  redrawList();
+  // Updated completed and total counter
+  document.getElementById("completed-count").innerHTML = completed;
+  document.getElementById("task-count").innerHTML = tasks.length;
 }
 
 drawList();
