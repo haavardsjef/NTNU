@@ -2,16 +2,20 @@
 <html>
   <head>
     <title>Tax forms: Bar chart with lines</title>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <script src="taxForms.js"></script>
   </head>
   <body>
-
-    <canvas id="chart" width="700" height="550"></canvas>
+    <canvas
+      id="chart"
+      width="700"
+      height="550"
+      style="border: 1px solid black"
+    ></canvas>
 
     <script>
-      const canvas = document.getElementById('chart');
-      const context = canvas.getContext('2d');
+      const canvas = document.getElementById("chart");
+      const context = canvas.getContext("2d");
 
       /* Draw a line from (fromX, fromY) to (toX, toY) */
       function drawLine(fromX, fromY, toX, toY) {
@@ -23,7 +27,7 @@
 
       /* Draw a text (string) on (x, y) */
       function drawText(text, x, y) {
-        context.fillStyle = 'black';
+        context.fillStyle = "black";
         context.fillText(text, x, y);
       }
 
@@ -34,6 +38,18 @@
       }
 
       /* Insert your code here. */
+      const margin = 10;
+      const height = canvas.height - margin * 2;
+      const width = canvas.width - margin * 2;
+      for (let index = 0; index < 10; index++) {
+        drawLineWithText(
+          "1000",
+          margin + 50,
+          margin + index * (height / 10),
+          width,
+          margin + index * (height / 10)
+        );
+      }
     </script>
   </body>
 </html>

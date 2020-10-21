@@ -72,3 +72,6 @@ class Rosenblatt(BaseEstimator, ClassifierMixin):
                 break
 
         return self
+
+
+if __name__ == "__main__":

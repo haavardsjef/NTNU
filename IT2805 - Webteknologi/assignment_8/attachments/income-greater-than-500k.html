@@ -2,12 +2,16 @@
 <html>
   <head>
     <title>Income greather than 500 000</title>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <script src="taxForms.js"></script>
   </head>
   <body>
     <script>
-      console.log(taxForms);
+      console.log(
+        taxForms
+          .filter((person) => person.income > 500000) // This filters the array to only persons with income > 500k
+          .map((person) => person.realName) // This returns an array with only the realName of each person
+      );
     </script>
   </body>
 </html>
