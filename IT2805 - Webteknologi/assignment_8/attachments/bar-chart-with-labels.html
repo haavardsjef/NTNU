@@ -35,7 +35,17 @@
       function drawLineWithText(text, fromX, fromY, toX, toY) {
         drawText(text, fromX - 50, fromY + 2); // Endret på denne ettersom den ikke var sentrert for meg
         drawLine(fromX, fromY, toX, toY);
-      }
+	  }
+	  
+	  function drawRectangle(color, x, y, width, height){
+		  context.fillStyle = color;
+		  context.fillRect(x, y, width, height)
+	  }
+
+	  function drawLabel(text, color, x, y){
+		  drawRectangle(color, x, y, 10, 10);
+		  drawText(text, x + 12, y + 8);
+	  }
 
       /* Insert your code here. */
       const margin = 25;
@@ -47,10 +57,12 @@
           1000000 - index * 100000,
           margin + textMargin,
           margin + index * (height / 9),
-          margin + width,
+          margin + width - textMargin,
           margin + index * (height / 9)
         );
-      }
+	  }
+	  drawLabel("Income", "red", width, 20, 30, 30)
+	  drawLabel("Wealth", "blue", width, 50, 30, 30)
     </script>
   </body>
 </html>
