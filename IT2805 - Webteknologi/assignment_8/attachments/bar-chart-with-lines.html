@@ -10,7 +10,7 @@
       id="chart"
       width="700"
       height="550"
-      style="border: 1px solid black"
+      style="border: 1px dashed black"
     ></canvas>
 
     <script>
@@ -33,22 +33,23 @@
 
       /* Draw a text and with a line to its right */
       function drawLineWithText(text, fromX, fromY, toX, toY) {
-        drawText(text, fromX - 50, fromY + 2); // Endret på denne ettersom den ikke var sentrert for meg
+        drawText(text, fromX - 50, fromY + 10);
         drawLine(fromX, fromY, toX, toY);
       }
 
       /* Insert your code here. */
-      const margin = 25;
-      const textMargin = 50;
-      const height = canvas.height - margin * 2;
-      const width = canvas.width - margin * 2;
-      for (let index = 0; index < 10; index++) {
+      const height = canvas.height;
+      const width = canvas.width;
+      const graphWidth = width - 60;
+
+      // Draw lines
+      for (let index = 1; index < 11; index++) {
         drawLineWithText(
-          1000000 - index * 100000,
-          margin + textMargin,
-          margin + index * (height / 9),
-          margin + width,
-          margin + index * (height / 9)
+          String(index * 100000),
+          60,
+          height - (height / 10) * index,
+          graphWidth,
+          height - (height / 10) * index
         );
       }
     </script>

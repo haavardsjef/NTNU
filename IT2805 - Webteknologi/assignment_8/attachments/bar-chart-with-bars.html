@@ -10,7 +10,7 @@
       id="chart"
       width="700"
       height="550"
-      style="border: 1px solid black"
+      style="border: 1px dashed black"
     ></canvas>
 
     <script>
@@ -33,40 +33,56 @@
 
       /* Draw a text and with a line to its right */
       function drawLineWithText(text, fromX, fromY, toX, toY) {
-        drawText(text, fromX - 50, fromY + 2); // Endret på denne ettersom den ikke var sentrert for meg
+        drawText(text, fromX - 50, fromY + 10);
         drawLine(fromX, fromY, toX, toY);
-	  }
-	  
-	  function drawRectangle(color, x, y, width, height){
-		  context.fillStyle = color;
-		  context.fillRect(x, y, width, height)
-	  }
-
-	  function drawLabel(text, color, x, y){
-		  drawRectangle(color, x, y, 10, 10);
-		  drawText(text, x + 12, y + 8);
-	  }
+      }
 
       /* Insert your code here. */
-      const margin = 25;
-      const textMargin = 50;
-      const height = canvas.height - margin * 2;
-      const width = canvas.width - margin * 2;
-      for (let index = 0; index < 10; index++) {
-        drawLineWithText(
-          1000000 - index * 100000,
-          margin + textMargin,
-          margin + index * (height / 9),
-          margin + width - textMargin,
-          margin + index * (height / 9)
-        );
-	  }
-	  drawLabel("Income", "red", width, 20, 30, 30)
-	  drawLabel("Wealth", "blue", width, 50, 30, 30)
+      function drawRectangle(color, x, y, width, height) {
+        context.fillStyle = color;
+        context.fillRect(x, y, width, height);
+      }
 
-	  taxForms.forEach(element => {
-		  drawRectangle("red", 30, 30, 20, element.income / 1000)
-	  });
+      const height = canvas.height;
+      const width = canvas.width;
+      const graphWidth = width - 60;
+
+      // Draw lines
+      for (let index = 1; index < 11; index++) {
+        drawLineWithText(
+          String(index * 100000),
+          60, // How far from left edge, this is set to 60 because text draws from -50(x) from this point
+          height - (height / 10) * index,
+          graphWidth,
+          height - (height / 10) * index
+        );
+      }
+
+      // Draw labels
+      drawRectangle("red", graphWidth + 2, 10, 10, 10);
+      drawText("Income", graphWidth + 15, 18);
+
+      drawRectangle("blue", graphWidth + 2, 30, 10, 10);
+      drawText("Wealth", graphWidth + 15, 38);
+
+      // Draw bars
+      const barWidth = (graphWidth - 20) / 6;
+      taxForms.forEach((person, index) => {
+        drawRectangle(
+          "red", // Red for income
+          70 + index * (graphWidth / 3), // How far from the left edge, here we divide by 3 because our taxForm has 3 entries
+          height - (height * person.income) / 1000000, // Top of rectangle is based on person income
+          50, // Width of rectangle is hardcoded, but could be dynamic based on width and size of taxForms list
+          (height * person.income) / 1000000 // Bottom of rectangle is always at the bottom of canvas
+        );
+        drawRectangle(
+          "blue", // Red for wealth
+          130 + index * (graphWidth / 3), // How far from the left edge, here we divide by 3 because our taxForm has 3 entries
+          height - (height * person.wealth) / 1000000, // Top of rectangle is based on person wealth
+          50, // Width of rectangle is hardcoded, but could be dynamic based on width and size of taxForms list
+          (height * person.wealth) / 1000000 // Bottom of rectangle is always at the bottom of canvas
+        );
+      });
     </script>
   </body>
 </html>
