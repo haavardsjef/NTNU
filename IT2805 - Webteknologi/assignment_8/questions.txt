@@ -1,0 +1,18 @@
+1. To get a three dimensional drawing context we can can call the method getContext("webgl") on the canvas element.
+
+2. To create a blue circle using the canvas element we can use the beginPath(), arc() and fill() method.
+We also have to set the fillStyle to "blue".
+The final code would be something like:
+ctx.beginPath();
+ctx.arc(x, y, r, 0, 2 * Math.PI);
+ctx.fillStyle = "blue";
+ctx.fill();
+Where x and y are the coordinates for the center of the circle, and r is the radius.
+The 0 and 2pi are the starting and ending angles of the arc, so these have to be exactly this way if we want a complete circle.
+
+3. 
+const countriesStartingWithN = countries.filter((country) => country[0] == "N");
+
+alternatively we could write:
+
+const countriesStartingWithN = countries.filter((country) => country.startsWith("N"));

@@ -83,6 +83,12 @@
           (height * person.wealth) / 1000000 // Bottom of rectangle is always at the bottom of canvas
         );
       });
+
+      countries = ["Norway", "Sweden", "Denmark", "New Zealand"];
+      const countriesStartingWithN = countries.filter((country) =>
+        country.startsWith("N")
+      );
+      console.log(countriesStartingWithN);
     </script>
   </body>
 </html>
